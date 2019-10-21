@@ -128,10 +128,8 @@ Try {
 		## <Perform Pre-Installation tasks here>
         #Gets Office Bitness (returns 'x64' or 'x86')
         $officebitness = Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Office\ClickToRun\Configuration' | Select-Object -ExpandProperty 'Platform' -ErrorAction SilentlyContinue
-        
         If ($officebitness -eq 'x64'){
-        
-		    #Visual C++ Redis for VS 2015
+        #Visual C++ Redis for VS 2015
 		    Execute-Process -Path "$dirSupportFiles\x64\vcredist_x64\vcredist_x64_VS2015.exe" -Parameters '/q /norestart' -WindowStyle 'Hidden' -IgnoreExitCodes '1638'
 
 		    #Access Database Engine 2010
@@ -144,8 +142,7 @@ Try {
 		    Execute-Process -Path "$dirSupportFiles\x64\VSTOR40\vstor_redist.exe" -Parameters '/q:a /c: "install /q /l"' -WindowStyle 'Hidden'
         }
         Else {
-        
-		    #Visual C++ Redis for VS 2015
+        #Visual C++ Redis for VS 2015
 		    Execute-Process -Path "$dirSupportFiles\x86\vcredist_x86_VS2015.exe" -Parameters '/q /norestart' -WindowStyle 'Hidden' -IgnoreExitCodes '1638'
 
 		    #Access Database Engine 2010
@@ -157,7 +154,6 @@ Try {
 		    #Visual Studio 2010 Tools for Office Runtime
 		    Execute-Process -Path "$dirSupportFiles\x86\vstor_redist.exe" -Parameters '/q:a /c: "install /q /l"' -WindowStyle 'Hidden'
         }
-        
         #Uninstalls Version 14.8.5
 		Execute-MSI -Action Uninstall -Path 'C3F83A5F-97EE-435E-BA5C-0D35D889737E' -Parameters '/qn'
 
