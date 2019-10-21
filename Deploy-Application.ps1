@@ -54,7 +54,6 @@ Param (
 	[Parameter(Mandatory=$false)]
 	[switch]$DisableLogging = $false
 )
-
 Try {
 	## Set the script execution policy for this process
 	Try { Set-ExecutionPolicy -ExecutionPolicy 'ByPass' -Scope 'Process' -Force -ErrorAction 'Stop' } Catch { Write-Error "Failed to set the execution policy to Bypass for this process." }
@@ -127,7 +126,6 @@ Try {
 		Show-InstallationProgress
 
 		## <Perform Pre-Installation tasks here>
-    
         #Gets Office Bitness (returns 'x64' or 'x86')
         $officebitness = Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Office\ClickToRun\Configuration' | Select-Object -ExpandProperty 'Platform' -ErrorAction SilentlyContinue
         
@@ -162,7 +160,6 @@ Try {
         
         #Uninstalls Version 14.8.5
 		Execute-MSI -Action Uninstall -Path 'C3F83A5F-97EE-435E-BA5C-0D35D889737E' -Parameters '/qn'
-
 
 		##*===============================================
 		##* INSTALLATION
